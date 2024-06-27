@@ -8,5 +8,10 @@
 import SignUpCard from "../components/SignUpCard.vue";
 export default {
   components: { SignUpCard },
+  mounted: function () {
+    if (this.$store.state?.userData) {
+      this.$router.push("/");
+    }
+  },
 };
 </script>

@@ -11,5 +11,10 @@ export default {
   components: {
     SignInCard,
   },
+  mounted: function () {
+    if (this.$store.state?.userData) {
+      this.$router.push("/");
+    }
+  },
 };
 </script>

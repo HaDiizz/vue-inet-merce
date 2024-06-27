@@ -38,7 +38,7 @@
               ></v-col>
             </v-row>
             <v-row>
-              <v-col cols="12" sm="12" md="6">
+              <v-col cols="12" sm="12" md="12">
                 <validation-provider
                   v-slot="{ errors }"
                   name="Username"
@@ -53,19 +53,6 @@
                   ></v-text-field>
                 </validation-provider>
               </v-col>
-              <v-col cols="12" sm="12" md="6">
-                <validation-provider
-                  v-slot="{ errors }"
-                  name="Email"
-                  rules="required|email"
-                >
-                  <v-text-field
-                    v-model="email"
-                    :error-messages="errors"
-                    label="E-mail"
-                    required
-                  ></v-text-field> </validation-provider
-              ></v-col>
             </v-row>
             <v-row>
               <v-col cols="12" sm="12" md="6">
@@ -150,7 +137,6 @@
 
 import {
   required,
-  email,
   max,
   regex,
   min_value,
@@ -195,11 +181,6 @@ extend("regex", {
   message: "{_field_} {_value_} does not match {regex}",
 });
 
-extend("email", {
-  ...email,
-  message: "Email must be valid",
-});
-
 export default {
   name: "SignUpCard",
   components: {
@@ -213,7 +194,6 @@ export default {
     password: "",
     cf_password: "",
     age: 0,
-    email: "",
     select: null,
     genders: ["Male", "Female", "Others"],
     isShowPassword: false,
@@ -224,28 +204,28 @@ export default {
     async submit() {
       const isValid = await this.$refs.observer.validate();
       if (!isValid) return;
-
       const {
         username,
-        first_name,
-        last_name,
         password,
         cf_password,
-        age,
-        email,
-        select,
-      } = this.$data;
-
-      console.log({
-        username,
         first_name,
         last_name,
-        password,
-        cf_password,
         age,
-        email,
-        select,
-      });
+        select: gender,
+      } = this;
+      try {
+        this?.$store?.dispatch("registerAction", {
+          username,
+          password,
+          cf_password,
+          first_name,
+          last_name,
+          age,
+          gender,
+        });
+      } catch (err) {
+        console.log(err);
+      }
     },
     clear() {
       this.username = "";
@@ -254,7 +234,6 @@ export default {
       this.password = "";
       this.cf_password = "";
       this.age = 0;
-      this.email = "";
       this.select = null;
       this.$refs.observer.reset();
     },

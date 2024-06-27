@@ -92,7 +92,7 @@ export default {
 
       const { username, password } = this.$data;
 
-      console.log({
+      this?.$store?.dispatch("loginAction", {
         username,
         password,
       });

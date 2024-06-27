@@ -1,8 +1,37 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
+// import store from "@/store";
 
 Vue.use(VueRouter);
+
+// const ifNotAuthenticated = (to, from, next) => {
+//   if (!store.state.isLoggedIn) {
+//     next();
+//     return;
+//   }
+//   next("/");
+// };
+
+// const checkAdmin = (to, from, next) => {
+//   if (store.state.isLoggedIn) {
+//     if (store.state.userData.role === "admin") {
+//       next();
+//       return;
+//     } else {
+//       next("/");
+//     }
+//   }
+//   next("/sign-in");
+// };
+
+// const ifAuthenticated = (to, from, next) => {
+//   if (store.state.isLoggedIn) {
+//     next();
+//     return;
+//   }
+//   next("/sign-in");
+// };
 
 const routes = [
   {
@@ -13,16 +42,23 @@ const routes = [
         path: "/sign-in",
         name: "signIn",
         component: () => import("../views/SignInView.vue"),
+        // beforeEnter: ifNotAuthenticated,
       },
       {
         path: "/sign-up",
         name: "signUp",
         component: () => import("../views/SignUpView.vue"),
+        // beforeEnter: ifNotAuthenticated,
       },
       {
         path: "/",
         name: "home",
         component: HomeView,
+      },
+      {
+        path: "/product/:id",
+        name: "product_detail",
+        component: () => import("../views/ProductDetailView.vue"),
       },
       {
         path: "/about",
@@ -39,17 +75,23 @@ const routes = [
         name: "order",
         component: () => import("../views/OrderView.vue"),
       },
+      {
+        path: "/manage",
+        name: "manage",
+        component: () => import("../views/ManageView.vue"),
+        // beforeEnter: checkAdmin,
+      },
     ],
-  },
-  {
-    path: "/me",
-    name: "me",
-    component: () => import("../views/MeView.vue"),
   },
   {
     path: "/grade",
     name: "grade",
     component: () => import("../views/GradeView.vue"),
+  },
+  {
+    path: "/test",
+    name: "testAPI",
+    component: () => import("../views/TestAPI.vue"),
   },
 ];
 

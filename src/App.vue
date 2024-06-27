@@ -7,5 +7,9 @@
 <script>
 export default {
   name: "App",
+  // eslint-disable-next-line
+  created() {
+    this?.$store?.dispatch("refreshTokenAction");
+  },
 };
 </script>
