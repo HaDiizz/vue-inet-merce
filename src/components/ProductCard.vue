@@ -15,7 +15,7 @@
         }}
       </v-card-title>
       <v-card-text>
-        <div class="text-subtitle-1 text-end">{{ item.price }}$</div>
+        <div class="text-subtitle-1 text-end">${{ item.price }}</div>
 
         <div>
           {{

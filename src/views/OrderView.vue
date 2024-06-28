@@ -33,7 +33,7 @@
                 }}
               </td>
               <td>{{ item.orderItems.length }}</td>
-              <td>${{ item.totalPrice }}</td>
+              <td>${{ item.totalPrice.toFixed(2) }}</td>
               <td>{{ convertDate(item.createdAt) }}</td>
               <td>{{ convertDate(item.updatedAt) }}</td>
               <td>
@@ -68,7 +68,7 @@
               </v-card>
               <v-card class="pa-2 d-flex align-center" outlined tile>
                 <span class="font-weight-bold">Unit Price: </span>
-                <span class="ml-2">{{ item.product.price }}</span>
+                <span class="ml-2">{{ item.product.price.toFixed(2) }}</span>
               </v-card>
               <v-card class="pa-2 d-flex align-center" outlined tile>
                 <span class="font-weight-bold">Quantity: </span>

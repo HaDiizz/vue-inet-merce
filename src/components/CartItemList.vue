@@ -38,6 +38,7 @@
                     >
                     <span class="ps-5 pe-5 pa-3">{{ item.amount }}</span>
                     <v-btn
+                      id="addItem"
                       style="width: 10px; min-width: 10px"
                       @click="increaseAmount(item)"
                       >+</v-btn
